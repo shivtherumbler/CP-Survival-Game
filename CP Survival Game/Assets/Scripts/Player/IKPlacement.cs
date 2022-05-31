@@ -275,4 +275,24 @@ public class IKPlacement : MonoBehaviour
         if (lfAngle > 360f) lfAngle -= 360f;
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
     }
+
+    public void Pistol()
+    {
+        gunno = 0;
+    }
+
+    public void SMG()
+    {
+        gunno = 1;
+    }
+
+    public void Grenade()
+    {
+        gunno = 2;
+    }
+
+    public void Flame()
+    {
+        gunno = 3;
+    }
 }

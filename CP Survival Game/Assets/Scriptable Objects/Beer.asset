@@ -15,4 +15,4 @@ MonoBehaviour:
   id: InventoryItem_Beer
   displayName: Beer
   icon: {fileID: 21300000, guid: 91b0dd8c0eeca5245b1a155d0802cf71, type: 3}
-  prefab: {fileID: 1205957278085456292, guid: f0595508805eb78409868610cee545f5, type: 3}
+  prefab: {fileID: 2993278274763123655, guid: 994b7fe49f5caa6439db217b0feea741, type: 3}

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SaveScript : MonoBehaviour
 {
-    public GameObject SMG;
-    public GameObject GrenadeLauncher;
-    public GameObject FlameThrower;
+    //public GameObject SMG;
+    //public GameObject GrenadeLauncher;
+    //public GameObject FlameThrower;
     public static int WeaponID;
     public static int currentWeaponID;
     public static string WeaponName;
@@ -31,7 +31,7 @@ public class SaveScript : MonoBehaviour
     {
         
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        /*if(Input.GetKeyDown(KeyCode.Q))
         {
             WeaponID = 0;
         }
@@ -60,7 +60,7 @@ public class SaveScript : MonoBehaviour
             {
                 WeaponID = 4;
             }
-        }        
+        }      */  
 
     }
 }

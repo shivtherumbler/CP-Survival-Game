@@ -19,8 +19,9 @@ public class InventoryView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ItemsAdded = new List<GameObject>();
         Instance = this;
+        ItemsAdded = new List<GameObject>();
+        
         for (int i = 0; i < Inventory.Instance.inventory.Count; i++)
         {
             GameObject item = Instantiate(inventoryItem, transform);
@@ -45,7 +46,7 @@ public class InventoryView : MonoBehaviour
                 tempColor.a = 100f;
                 panel.color = tempColor;
                 openclosed = true;
-                Time.timeScale = 1;
+                //Time.timeScale = 1;
             }
 
             else
@@ -58,7 +59,7 @@ public class InventoryView : MonoBehaviour
                 tempColor.a = 0f;
                 panel.color = tempColor;
                 openclosed = false;
-                Time.timeScale = 0;
+               //Time.timeScale = 0;
             }
         }   
     }
@@ -83,6 +84,18 @@ public class InventoryView : MonoBehaviour
             ItemsAdded.Add(item);
             item.GetComponent<InventoryItemQuantity>().ItemName = itemData.name;
             item.transform.GetChild(0).GetComponent<Text>().text = itemData.name;
+            item.GetComponent<InventoryItemQuantity>().itemData = itemData;
+        }
+    }
+
+    public void UpdateItemInInventory(InventoryItemData itemData)
+    {
+        foreach (InventoryItemQuantity item in transform.GetComponentsInChildren<InventoryItemQuantity>(true))
+        {
+            
+                item.IncreaseQuantity();
+                return;
+            
         }
     }
 

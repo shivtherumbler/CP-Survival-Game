@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: InventoryItem_Medkit
   displayName: Medkit
-  icon: {fileID: 21300000, guid: 2c5c8affe69150c4abd7e25bad3e163b, type: 3}
-  prefab: {fileID: 3236490405287730364, guid: 13e578423bae5e34dba62360c2ee12f1, type: 3}
+  icon: {fileID: 21300000, guid: b77c797443051f54698c3b98d7e2cffb, type: 3}
+  prefab: {fileID: 6453430416484832519, guid: a97a36b4e3b60454d9cc4cb7dc2d42b3, type: 3}

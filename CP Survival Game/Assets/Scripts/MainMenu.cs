@@ -35,6 +35,34 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(LoadYourAsyncScene("Apocalypse"));
     }
 
+    public void Subway()
+    {
+        StartCoroutine(LoadYourAsyncScene("Subway"));
+    }
+
+    public void Village()
+    {
+        StartCoroutine(LoadYourAsyncScene("Village"));
+    }
+
+    public void Dungeon1()
+    {
+        StartCoroutine(LoadYourAsyncScene("Dungeon1"));
+
+    }
+
+    public void Temple()
+    {
+        StartCoroutine(LoadYourAsyncScene("Temple"));
+
+    }
+
+    public void Lab1()
+    {
+        StartCoroutine(LoadYourAsyncScene("Lab1"));
+
+    }
+
     IEnumerator Cutscene(GameObject video)
     {
         video.SetActive(true);
@@ -125,6 +153,9 @@ public class MainMenu : MonoBehaviour
         audioSource.Play();
     }
 
-    
+    public void Graphics(int quality)
+    {
+        QualitySettings.SetQualityLevel(quality);
+    }
 }
 

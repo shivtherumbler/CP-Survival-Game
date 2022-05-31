@@ -54,12 +54,12 @@ public class PlayerShooting : MonoBehaviour
                     if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0))
                     {
 
-                        //if (SaveScript.AmmoAmt > 0)
-                        //{
+                        if (SaveScript.AmmoAmt > 0)
+                        {
                         //Instantiate(MuzzleFlash, PistolMuzzleSpawn.position, MuzzleSpawn.rotation);
                         MuzzleFlash[iK.gunno].SetActive(true);
                         StartCoroutine(Fire());
-                        //SaveScript.AmmoAmt -= 1;
+                        SaveScript.AmmoAmt -= 1;
                         shootsound.clip = clip[0];
                         shootsound.loop = false;
                         shootsound.pitch = 1;
@@ -70,7 +70,7 @@ public class PlayerShooting : MonoBehaviour
                         //PlayerAudio.Play();
 
                         Hits();
-                        //}
+                        }
                     }
                 }
                 else if(iK.gunno == 1)
@@ -81,23 +81,29 @@ public class PlayerShooting : MonoBehaviour
                         //if (SaveScript.AmmoAmt > 0)
                         //{
                         //Instantiate(MuzzleFlash, PistolMuzzleSpawn.position, MuzzleSpawn.rotation);
-                        MuzzleFlash[iK.gunno].SetActive(true);
-                        StartCoroutine(Fire());
-                        //SaveScript.AmmoAmt -= 1;
-                        if (RapidPlay == true)
+                        if (SaveScript.SMGAmmo > 0)
                         {
-                            RapidPlay = false;
-                            shootsound.clip = clip[1];
-                            shootsound.loop = true;
-                            shootsound.pitch = 3;
-                            shootsound.Play();
+                            MuzzleFlash[iK.gunno].SetActive(true);
+                            StartCoroutine(Fire());
+                            SaveScript.AmmoAmt -= 1;
+                            if (RapidPlay == true)
+                            {
+                                RapidPlay = false;
+                                shootsound.clip = clip[1];
+                                shootsound.loop = true;
+                                shootsound.pitch = 3;
+                                shootsound.Play();
+                            }
+
+                            Hits();
                         }
+                           
                             //PlayerAudio.clip = SingleShotSound;
                             //PlayerAudio.loop = false;
                             //PlayerAudio.pitch = 1;
                             //PlayerAudio.Play();
 
-                            Hits();
+                            
                         //}
                     }
                     if (Input.GetMouseButtonUp(0))
@@ -110,37 +116,56 @@ public class PlayerShooting : MonoBehaviour
                 {
                     if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0))
                     {
-                        Instantiate(GrenadeSmoke, MuzzleSpawn.position, MuzzleSpawn.rotation);
-
-                        //SaveScript.GrenadeAmmo -= 1;
-
-                        shootsound.clip = clip[2];
-                        shootsound.loop = false;
-                        shootsound.pitch = 1;
-                        shootsound.PlayDelayed(0.3f);
-                        if (Physics.Raycast(aim.transform.position, aim.transform.forward, out hit, 1000))
+                        if (SaveScript.GrenadeAmmo > 0)
                         {
-                            StartCoroutine(Grenade());
-                        }
+                            Instantiate(GrenadeSmoke, MuzzleSpawn.position, MuzzleSpawn.rotation);
+
+                            SaveScript.GrenadeAmmo -= 1;
+
+                            shootsound.clip = clip[2];
+                            shootsound.loop = false;
+                            shootsound.pitch = 1;
+                            shootsound.PlayDelayed(0.3f);
+                            if (Physics.Raycast(aim.transform.position, aim.transform.forward, out hit, 1000))
+                            {
+                                StartCoroutine(Grenade());
+                            }
+                        }      
                     }                       
                 }
                 else if (iK.gunno == 3)
                 {
                     if (Input.GetMouseButton(1) && Input.GetMouseButton(0))
                     {
-                        Flames.gameObject.SetActive(true);
-
-                        if (RapidPlay == true)
+                        if (SaveScript.FlameAmmo > 0)
                         {
-                            RapidPlay = false;
-                            FireFuel = true;
-                            shootsound.clip = clip[3];
-                            shootsound.loop = true;
-                            shootsound.pitch = 0.1f;
-                            shootsound.Play();
+                            Flames.gameObject.SetActive(true);
+
+                            if (RapidPlay == true)
+                            {
+                                RapidPlay = false;
+                                FireFuel = true;
+                                shootsound.clip = clip[3];
+                                shootsound.loop = true;
+                                shootsound.pitch = 0.1f;
+                                shootsound.Play();
+                            }
                         }
+                           
                     }
                         
+                }
+                if (SaveScript.FlameAmmo <= 0)
+                {
+                    FireFuel = false;
+                    Flames.gameObject.SetActive(false);
+                    shootsound.Stop();
+
+                }
+
+                if (FireFuel == true)
+                {
+                    SaveScript.FlameAmmo -= 3 * Time.deltaTime;
                 }
             }
         }   
@@ -152,39 +177,51 @@ public class PlayerShooting : MonoBehaviour
         {
             if (iK.gunno == 0)
             {
-                MuzzleFlash[iK.gunno].SetActive(true);
-                StartCoroutine(Fire());
-                //SaveScript.AmmoAmt -= 1;
-                shootsound.clip = clip[0];
-                shootsound.loop = false;
-                shootsound.pitch = 1;
-                shootsound.Play();
-                //PlayerAudio.clip = SingleShotSound;
-                //PlayerAudio.loop = false;
-                //PlayerAudio.pitch = 1;
-                //PlayerAudio.Play();
+                if (SaveScript.AmmoAmt > 0)
+                {
+                    MuzzleFlash[iK.gunno].SetActive(true);
+                    StartCoroutine(Fire());
+                    SaveScript.AmmoAmt -= 1;
+                    shootsound.clip = clip[0];
+                    shootsound.loop = false;
+                    shootsound.pitch = 1;
+                    shootsound.Play();
+                    //PlayerAudio.clip = SingleShotSound;
+                    //PlayerAudio.loop = false;
+                    //PlayerAudio.pitch = 1;
+                    //PlayerAudio.Play();
 
-                Hits();
+                    Hits();
+                }
+                    
             }
             else if(iK.gunno == 1)
             {
                 //if (SaveScript.AmmoAmt > 0)
                 //{
                 //Instantiate(MuzzleFlash, PistolMuzzleSpawn.position, MuzzleSpawn.rotation);
-
-                MuzzleFlash[iK.gunno].SetActive(true);
-                StartCoroutine(Fire());
-                //SaveScript.AmmoAmt -= 1;
-                if (RapidPlay == true)
+                if (SaveScript.SMGAmmo > 0)
                 {
-                    RapidPlay = false;
-                    shootsound.clip = clip[1];
-                    shootsound.loop = true;
-                    shootsound.pitch = 3;
-                    shootsound.Play();
+                    MuzzleFlash[iK.gunno].SetActive(true);
+                    StartCoroutine(Fire());
+                    SaveScript.AmmoAmt -= 1;
+                    if (RapidPlay == true)
+                    {
+                        RapidPlay = false;
+                        shootsound.clip = clip[1];
+                        shootsound.loop = true;
+                        shootsound.pitch = 3;
+                        shootsound.Play();
 
 
+                    }
                 }
+
+                if (SaveScript.SMGAmmo <= 0)
+                {
+                    shootsound.Stop();
+                }
+
                 //PlayerAudio.clip = SingleShotSound;
                 //PlayerAudio.loop = false;
                 //PlayerAudio.pitch = 1;
@@ -196,32 +233,58 @@ public class PlayerShooting : MonoBehaviour
             }
             else if(iK.gunno == 2)
             {
-                Instantiate(GrenadeSmoke, MuzzleSpawn.position, MuzzleSpawn.rotation);
-
-                //SaveScript.GrenadeAmmo -= 1;
-
-                shootsound.clip = clip[2];
-                shootsound.loop = false;
-                shootsound.pitch = 1;
-                shootsound.Play();
-                if (Physics.Raycast(aim.transform.position, aim.transform.forward, out hit, 1000))
+                if (SaveScript.GrenadeAmmo > 0)
                 {
-                    StartCoroutine(Grenade());
+                    Instantiate(GrenadeSmoke, MuzzleSpawn.position, MuzzleSpawn.rotation);
+
+                    SaveScript.GrenadeAmmo -= 1;
+
+                    shootsound.clip = clip[2];
+                    shootsound.loop = false;
+                    shootsound.pitch = 1;
+                    shootsound.Play();
+                    if (Physics.Raycast(aim.transform.position, aim.transform.forward, out hit, 1000))
+                    {
+                        StartCoroutine(Grenade());
+                    }
+
+                    Hits();
                 }
+                   
             }
             else if(iK.gunno == 3)
             {
-                Flames.gameObject.SetActive(true);
-
-                if (RapidPlay == true)
+                if (SaveScript.FlameAmmo > 0)
                 {
-                    RapidPlay = false;
-                    FireFuel = true;
-                    shootsound.clip = clip[3];
-                    shootsound.loop = true;
-                    shootsound.pitch = 0.1f;
-                    shootsound.Play();
+                    Flames.gameObject.SetActive(true);
+
+                    if (RapidPlay == true)
+                    {
+                        RapidPlay = false;
+                        FireFuel = true;
+                        shootsound.clip = clip[3];
+                        shootsound.loop = true;
+                        shootsound.pitch = 0.1f;
+                        shootsound.Play();
+                    }
+
+                    Hits();
                 }
+
+                   
+            }
+
+            if (SaveScript.FlameAmmo <= 0)
+            {
+                FireFuel = false;
+                Flames.gameObject.SetActive(false);
+                shootsound.Stop();
+
+            }
+
+            if (FireFuel == true)
+            {
+                SaveScript.FlameAmmo -= 3 * Time.deltaTime;
             }
         }
     } 
@@ -240,6 +303,13 @@ public class PlayerShooting : MonoBehaviour
         CancelInvoke("Hits");
     }
 
+    public void PickupSound()
+    {
+        shootsound.clip = clip[4];
+        shootsound.loop = false;
+        shootsound.pitch = 0.7f;
+        shootsound.Play();
+    }
     public void Hits()
     {
 
@@ -308,4 +378,35 @@ public class PlayerShooting : MonoBehaviour
             hit.transform.gameObject.SendMessage("Explode");
         }
     }
+
+    public void PistolAmmo()
+    {
+        SaveScript.AmmoAmt += 10f;
+        PickupSound();
+    }
+
+    public void SMGAmmo()
+    {
+        SaveScript.AmmoAmt += 10f;
+        SaveScript.SMGAmmo += 30f;
+        PickupSound();
+    }    
+
+    public void GrenadeAmmo()
+    {
+        SaveScript.AmmoAmt += 10f;
+        SaveScript.SMGAmmo += 30f;
+        SaveScript.GrenadeAmmo += 3f;
+        PickupSound();
+    }
+
+    public void FlameAmmo()
+    {
+        SaveScript.AmmoAmt += 10f;
+        SaveScript.SMGAmmo += 30f;
+        SaveScript.GrenadeAmmo += 3f;
+        SaveScript.FlameAmmo += 50f;
+        PickupSound();
+    }
+
 }

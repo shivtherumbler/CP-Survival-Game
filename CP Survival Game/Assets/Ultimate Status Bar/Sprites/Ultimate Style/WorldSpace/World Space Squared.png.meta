@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: 21300006
     second: Mask
+  - first:
+      213: -2783192687678000643
+    second: World Space Squared_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -174,10 +177,31 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: World Space Squared_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 122
+        width: 120
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df1fc7d1ffc1069d0800000000000000
+      internalID: -2783192687678000643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2b0f27da513c3f747b2ed18c4be889e2
     internalID: 0
     vertices: []
     indices: 

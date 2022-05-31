@@ -17,7 +17,7 @@ public class CrowdBot : MonoBehaviour
     public RaycastHit hitinfo;
     public GameObject gameoverPanel;
     public bool addedinlist;
-
+    public GameObject controlpanel;
 
 
     void Start()
@@ -180,6 +180,7 @@ public class CrowdBot : MonoBehaviour
     {
         Time.timeScale = 0f;
         gameoverPanel.SetActive(true);
+        controlpanel.SetActive(false);
     }
 
     public void BitePlayer()

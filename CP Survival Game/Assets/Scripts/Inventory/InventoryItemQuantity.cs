@@ -14,6 +14,7 @@ public class InventoryItemQuantity : MonoBehaviour
     public Animator anim;
     public GameObject player;
     public PlayerHealthManager manager;
+    public InventoryItemData itemData;
 
     private void Start()
     {
@@ -51,11 +52,13 @@ public class InventoryItemQuantity : MonoBehaviour
             
             Quantity--;
             AvailableQuantity.text = "x" + Quantity.ToString();
+            Inventory.Instance.Use(itemData);
         }
         else 
         {
             Quantity--;
             AvailableQuantity.text = "x" + Quantity.ToString();
+            Inventory.Instance.Use(itemData);
             Destroy(gameObject, 0.1f);
         }
 
